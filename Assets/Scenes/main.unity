@@ -565,7 +565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timed: {fileID: 8300000, guid: 3b2af6049f0414207be4ef3b22a1a810, type: 3}
-  infinite: {fileID: 8300000, guid: 79fb53dce82514fdcb64baaf3bf9f46e, type: 3}
+  infinite: {fileID: 8300000, guid: 9163e4266e8564b33b29fd620d159b7e, type: 3}
 --- !u!82 &99770367
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1536,7 +1536,6 @@ GameObject:
   - component: {fileID: 815367239}
   - component: {fileID: 815367238}
   - component: {fileID: 815367237}
-  - component: {fileID: 815367240}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1594,14 +1593,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &815367240
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815367236}
-  m_Enabled: 1
 --- !u!1 &937698685
 GameObject:
   m_ObjectHideFlags: 0
