@@ -17,8 +17,14 @@ public class timer : MonoBehaviour
         if (startGame.Instance.timed != null) {
             if (startGame.Instance.timed) {
                 timerText.text = "Time: 100";
+                GameObject.Find("leaf").SetActive(true);
+                GameObject.Find("star").SetActive(false);
+
             } else {
                 timerText.text = "";
+                GameObject.Find("leaf").SetActive(false);
+                GameObject.Find("star").SetActive(true);
+
             }
         }
         ends = GameObject.FindGameObjectsWithTag("endScreen");
