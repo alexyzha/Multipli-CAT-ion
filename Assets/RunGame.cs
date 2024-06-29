@@ -46,6 +46,8 @@ public class RunGame : MonoBehaviour
             instance.name = i.ToString();
             //cardPrefab.GetComponent<SpriteRenderer>().enabled = true;
             instance.GetComponent<SpriteRenderer>().enabled = true;
+            instance.layer = 9;
+            instance.GetComponent<Renderer>().sortingLayerID = SortingLayer.NameToID("Default");
         }
 
     }
