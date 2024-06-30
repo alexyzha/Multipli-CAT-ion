@@ -13,6 +13,15 @@ public class dragAll : MonoBehaviour {
 
   // Update is called once per frame
   void Update() {
+    GameObject stars = GameObject.Find("stars");
+    SpriteRenderer star = stars.GetComponent<SpriteRenderer>();
+    Color color = star.color;
+    for (int i = 0; i <= 5; i++) {
+      color.a -= 0.2f * Time.deltaTime;
+      star.color = color;
+    }
+
+
     if (Input.GetMouseButtonDown(0)) {
       // Cast our own ray.
       RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition),
@@ -25,17 +34,28 @@ public class dragAll : MonoBehaviour {
         dragging.GetComponent<Renderer>().sortingLayerID = SortingLayer.NameToID("ahead");
         // Record the size of the sprite so we can limit it to the screen if necessary.
         extents = dragging.GetComponent<SpriteRenderer>().sprite.bounds.extents;
+
+        //change scale
+        Vector3 scaleDiff = new Vector3(0.001f, 0.001f, 0.001f);
+        for (int i = 0; i < 100; i++) {
+          hit.transform.localScale += scaleDiff;
+        }
       }
     } else if (Input.GetMouseButtonUp(0)) {
       // Stop dragging.
-        if (dragging != null)
+        if (dragging != null) {
           dragging.GetComponent<Renderer>().sortingLayerID = SortingLayer.NameToID("Default");
+          //scale down
+          Vector3 scaleDiff = new Vector3(0.001f, 0.001f, 0.001f);
+          for (int i = 0; i < 100; i++) {
+              dragging.localScale -= scaleDiff;
+          }
+        }
         dragging = null;
         Collider2D[] collider2Ds;
 
         collider2Ds = Physics2D.OverlapCircleAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), 0.2f);
         
-
         //for NEWNUM random folder
         int newNum = 1;
         if (collider2Ds.Length == 2 && int.Parse(collider2Ds[0].name) * int.Parse(collider2Ds[1].name) < 145) {
@@ -44,6 +64,12 @@ public class dragAll : MonoBehaviour {
             newNum *= int.Parse(collider.name);
               DestroyImmediate(collider.gameObject);
           }
+
+          stars.SetActive(true);
+          Vector3 pos = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
+          stars.transform.position = pos;
+          color.a = 1;
+          star.color = color;
 
           GameObject instance = Instantiate(
                                     cardPrefab, 
@@ -65,9 +91,8 @@ public class dragAll : MonoBehaviour {
               instance.GetComponent<SpriteRenderer>().enabled = true;
 
           score.SendMessage("incrementMerge");
-
         }        
-        
+        dragging = null;
         //end newnum
 
     }
