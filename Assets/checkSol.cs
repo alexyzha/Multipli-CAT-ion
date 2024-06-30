@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class checkSol : Reset
 {
+    AudioSource audioSource;
     void Start()
     {
-       
+       audioSource = GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
@@ -18,6 +19,7 @@ public class checkSol : Reset
             if (GameObject.FindGameObjectsWithTag("solution").Length > 1) {
                 GameObject cat = GameObject.FindGameObjectsWithTag("solution")[1];
                 if (hit && Input.GetMouseButtonUp(0) && int.Parse(hit.name) == int.Parse(cat.name)) {
+                    audioSource.Play();
                     Destroy(cat);
                     score.SendMessage("nextLevel");
                     resetLevel();

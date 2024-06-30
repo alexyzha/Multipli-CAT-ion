@@ -12,6 +12,8 @@ public class dragAll : MonoBehaviour {
   private Vector3 extents;
   
   private AudioSource audioSource;
+  public AudioClip bloop;
+  public AudioClip sparkle;
 
   // Update is called once per frame
   void Update() {
@@ -46,6 +48,7 @@ public class dragAll : MonoBehaviour {
         }
 
         //sound
+        audioSource.clip = bloop;
         audioSource.pitch = 1.0f;
         audioSource.Play();
       }
@@ -60,6 +63,7 @@ public class dragAll : MonoBehaviour {
           }
 
           //sound
+          audioSource.clip = bloop;
           audioSource.pitch = 1.7f;
           audioSource.Play();
         }
@@ -82,6 +86,10 @@ public class dragAll : MonoBehaviour {
           stars.transform.position = pos;
           color.a = 1;
           star.color = color;
+          //sound
+          audioSource.clip = sparkle;
+          audioSource.pitch = 1.0f;
+          audioSource.Play();
 
           GameObject instance = Instantiate(
                                     cardPrefab, 
