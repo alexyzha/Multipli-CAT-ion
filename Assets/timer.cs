@@ -7,7 +7,7 @@ public class timer : MonoBehaviour
 {
     [SerializeField] private TMP_Text timerText;
     [SerializeField] private TMP_Text finalText;
-    double time = 10;
+    double time = 30.0;
     GameObject[] ends;
     bool ended = false;
 
@@ -65,5 +65,9 @@ public class timer : MonoBehaviour
                        + GameObject.Find("score").GetComponent<keepScore>().getScore()
                        + ", High Score: " 
                        + GameObject.Find("GameObject").GetComponent<highScore>().loadScore();
+    }
+
+    public void setTime(double t) {
+        time = t;
     }
 }

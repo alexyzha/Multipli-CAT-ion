@@ -28,6 +28,18 @@ public class keepScore : MonoBehaviour
         if (merges == 1) {
             totalScore++;
         }
+
+        //time
+        if (startGame.Instance.timed) {
+            if (totalScore < 10)
+                GameObject.Find("timer").GetComponent<timer>().setTime(30);
+            else if (totalScore < 20)
+                GameObject.Find("timer").GetComponent<timer>().setTime(20);
+            else if (totalScore < 30)
+                GameObject.Find("timer").GetComponent<timer>().setTime(10);
+            else
+                GameObject.Find("timer").GetComponent<timer>().setTime(5);
+        }
     }
 
     public int getScore() {
