@@ -10,9 +10,13 @@ public class dragAll : MonoBehaviour {
   private Transform dragging = null;
   private Vector3 offset;
   private Vector3 extents;
+  
+  private AudioSource audioSource;
 
   // Update is called once per frame
   void Update() {
+    audioSource = GetComponent<AudioSource>();
+
     GameObject stars = GameObject.Find("stars");
     SpriteRenderer star = stars.GetComponent<SpriteRenderer>();
     Color color = star.color;
@@ -40,6 +44,10 @@ public class dragAll : MonoBehaviour {
         for (int i = 0; i < 100; i++) {
           hit.transform.localScale += scaleDiff;
         }
+
+        //sound
+        audioSource.pitch = 1.0f;
+        audioSource.Play();
       }
     } else if (Input.GetMouseButtonUp(0)) {
       // Stop dragging.
@@ -50,6 +58,10 @@ public class dragAll : MonoBehaviour {
           for (int i = 0; i < 100; i++) {
               dragging.localScale -= scaleDiff;
           }
+
+          //sound
+          audioSource.pitch = 1.7f;
+          audioSource.Play();
         }
         dragging = null;
         Collider2D[] collider2Ds;
