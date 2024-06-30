@@ -49,9 +49,9 @@ public class dragAll : MonoBehaviour {
         }
 
         //sound
-        audioSource.clip = bloop;
         audioSource.pitch = 1.0f;
-        audioSource.Play();
+        audioSource.volume = 0.16f;
+        audioSource.PlayOneShot(bloop);
       }
     } else if (Input.GetMouseButtonUp(0)) {
       // Stop dragging.
@@ -64,9 +64,9 @@ public class dragAll : MonoBehaviour {
           }
 
           //sound
-          audioSource.clip = bloop;
           audioSource.pitch = 1.7f;
-          audioSource.Play();
+          audioSource.volume = 0.16f;
+          audioSource.PlayOneShot(bloop);
         }
         dragging = null;
         Collider2D[] collider2Ds;
@@ -88,9 +88,9 @@ public class dragAll : MonoBehaviour {
           color.a = 1;
           star.color = color;
           //sound
-          audioSource.clip = sparkle;
           audioSource.pitch = 1.0f;
-          audioSource.Play();
+          audioSource.volume = 0.4f;
+          audioSource.PlayOneShot(sparkle);
 
           GameObject instance = Instantiate(
                                     cardPrefab, 

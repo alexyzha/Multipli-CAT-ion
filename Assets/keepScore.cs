@@ -9,13 +9,24 @@ public class keepScore : MonoBehaviour
     int merges = 0;
     [SerializeField] 
         private TMP_Text scoreText;
+    private AudioSource audioSource;
+
+    void Start() {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     // Update is called once per frame
     void Update()
     {
         scoreText.text = "Score: " + totalScore.ToString();
         //Debug.Log(totalScore);
-        
+
+        Transform cf = GameObject.Find("confetti").transform;
+        Vector3 pos = cf.position;
+        for (int i = 0; i < 50; i++) {
+            pos.y -= Time.deltaTime * 0.5f;
+            cf.position = pos;
+        }
     }
 
     public void incrementMerge() {
@@ -39,6 +50,11 @@ public class keepScore : MonoBehaviour
                 GameObject.Find("timer").GetComponent<timer>().setTime(10);
             else
                 GameObject.Find("timer").GetComponent<timer>().setTime(5);
+        }
+
+        if (totalScore == 10 || totalScore == 25 || totalScore % 50 == 0) {
+            GameObject.Find("confetti").transform.position = new Vector3(0, 12, 0);
+            audioSource.Play();
         }
     }
 
