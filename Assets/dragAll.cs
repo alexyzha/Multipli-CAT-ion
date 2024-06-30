@@ -3,6 +3,7 @@ using UnityEngine;
 public class dragAll : MonoBehaviour {
   [SerializeField] private LayerMask movableLayers;
   [SerializeField] private bool isMoveRestrictedToScreen = true;
+  public bool drag = true;
 
   public GameObject cardPrefab;
   public GameObject score;
@@ -28,7 +29,7 @@ public class dragAll : MonoBehaviour {
     }
 
 
-    if (Input.GetMouseButtonDown(0)) {
+    if (Input.GetMouseButtonDown(0) && drag) {
       // Cast our own ray.
       RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition),
                                            Vector2.zero, float.PositiveInfinity, movableLayers);
@@ -74,7 +75,7 @@ public class dragAll : MonoBehaviour {
         
         //for NEWNUM random folder
         int newNum = 1;
-        if (collider2Ds.Length == 2 && int.Parse(collider2Ds[0].name) * int.Parse(collider2Ds[1].name) < 145) {
+        if (collider2Ds.Length == 2 && int.Parse(collider2Ds[0].name) * int.Parse(collider2Ds[1].name) < 145 && drag) {
           foreach (var collider in collider2Ds)
           {
             newNum *= int.Parse(collider.name);
@@ -130,5 +131,9 @@ public class dragAll : MonoBehaviour {
       // Set the target objects position.
       dragging.position = pos;
     }
+  }
+
+  public void setEnable(bool enable) {
+    drag = enable;
   }
 }

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class back : MonoBehaviour
 {
+    GameObject[] ends;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,11 @@ public class back : MonoBehaviour
     }
 
     public void contBtn() {
-        
+        GameObject.Find("GameObject").GetComponent<dragAll>().setEnable(true);
+        ends = GameObject.FindGameObjectsWithTag("endScreen");
+        foreach (var end in ends)
+          {
+            end.SetActive(false);
+          }        
     }
 }

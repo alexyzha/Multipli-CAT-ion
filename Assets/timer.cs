@@ -8,24 +8,22 @@ public class timer : MonoBehaviour
     [SerializeField] private TMP_Text timerText;
     [SerializeField] private TMP_Text finalText;
     double time = 10;
-    bool timed;
     GameObject[] ends;
+    bool ended = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (startGame.Instance.timed != null) {
-            if (startGame.Instance.timed) {
-                timerText.text = "Time: 100";
-                GameObject.Find("leaf").SetActive(true);
-                GameObject.Find("star").SetActive(false);
+        if (startGame.Instance.timed) {
+            timerText.text = "Time: 100";
+            GameObject.Find("leaf").SetActive(true);
+            GameObject.Find("star").SetActive(false);
 
-            } else {
-                timerText.text = "";
-                GameObject.Find("leaf").SetActive(false);
-                GameObject.Find("star").SetActive(true);
+        } else {
+            timerText.text = "";
+            GameObject.Find("leaf").SetActive(false);
+            GameObject.Find("star").SetActive(true);
 
-            }
         }
         ends = GameObject.FindGameObjectsWithTag("endScreen");
         foreach (var end in ends)
@@ -37,14 +35,13 @@ public class timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (startGame.Instance.timed != null) {
-            if (startGame.Instance.timed) {
-                if (time > 0) {
-                    time -= Time.deltaTime;
-                    timerText.text = "Time: " + ((int) time).ToString();
-                } else {
-                    timerEnded();
-                }
+        if (startGame.Instance.timed && !ended) {
+            if (time > 0) {
+                time -= Time.deltaTime;
+                timerText.text = "Time: " + ((int) time).ToString();
+            } else {
+                timerEnded();
+                ended = true;
             }
         }
     }
@@ -55,6 +52,9 @@ public class timer : MonoBehaviour
           {
             end.SetActive(true);
           }
+        
+        GameObject.Find("GameObject").GetComponent<dragAll>().setEnable(false);
+
         //temp hs to see
         //int highChecker = keepScore.highCompare();
 //PLACEHOLDER IF FUNCITON:

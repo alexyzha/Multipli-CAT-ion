@@ -840,6 +840,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   isMoveRestrictedToScreen: 1
+  enabled: 1
   cardPrefab: {fileID: 4414822}
   score: {fileID: 83060768}
   bloop: {fileID: 8300000, guid: 39db48543075049c883adb3950073ba3, type: 3}
