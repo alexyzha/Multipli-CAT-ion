@@ -68,7 +68,6 @@ public class dragAll : MonoBehaviour {
           audioSource.volume = 0.16f;
           audioSource.PlayOneShot(bloop);
         }
-        dragging = null;
         Collider2D[] collider2Ds;
 
         collider2Ds = Physics2D.OverlapCircleAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), 0.2f);
@@ -76,6 +75,10 @@ public class dragAll : MonoBehaviour {
         //for NEWNUM random folder
         int newNum = 1;
         if (collider2Ds.Length == 2 && int.Parse(collider2Ds[0].name) * int.Parse(collider2Ds[1].name) < 145 && drag) {
+          Vector3 createPos = collider2Ds[1].transform.position;
+          if (createPos == dragging.position)
+            createPos = collider2Ds[0].transform.position;
+
           foreach (var collider in collider2Ds)
           {
             newNum *= int.Parse(collider.name);
@@ -83,7 +86,7 @@ public class dragAll : MonoBehaviour {
           }
 
           stars.SetActive(true);
-          Vector3 pos = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
+          Vector3 pos = createPos;
           stars.transform.position = pos;
           color.a = 1;
           star.color = color;
@@ -104,7 +107,7 @@ public class dragAll : MonoBehaviour {
           string folder = colors[index];
           string folderpath = folder + "/" + newNum.ToString();
 
-          instance.transform.localPosition = new Vector3(instance.transform.position.x, instance.transform.position.y, 0);
+          instance.transform.localPosition = createPos;
               Sprite sprite = Resources.Load<Sprite>(folderpath);
               instance.GetComponent<SpriteRenderer>().sprite = sprite;
               instance.name = newNum.ToString();

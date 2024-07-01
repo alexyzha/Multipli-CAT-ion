@@ -43,16 +43,18 @@ public class keepScore : MonoBehaviour
         //time
         if (startGame.Instance.timed) {
             if (totalScore < 10)
-                GameObject.Find("timer").GetComponent<timer>().setTime(30);
+                GameObject.Find("timer").GetComponent<timer>().setTime(41);
             else if (totalScore < 20)
-                GameObject.Find("timer").GetComponent<timer>().setTime(20);
+                GameObject.Find("timer").GetComponent<timer>().setTime(31);
             else if (totalScore < 30)
-                GameObject.Find("timer").GetComponent<timer>().setTime(10);
+                GameObject.Find("timer").GetComponent<timer>().setTime(21);
+            else if (totalScore < 40)
+                GameObject.Find("timer").GetComponent<timer>().setTime(11);
             else
-                GameObject.Find("timer").GetComponent<timer>().setTime(5);
+                GameObject.Find("timer").GetComponent<timer>().setTime(6);
         }
 
-        if (totalScore == 10 || totalScore == 25 || totalScore % 50 == 0) {
+        if (totalScore != 0 && (totalScore == 10 || totalScore == 25 || totalScore % 50 == 0)) {
             GameObject.Find("confetti").transform.position = new Vector3(0, 12, 0);
             audioSource.Play();
         }

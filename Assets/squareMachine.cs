@@ -7,11 +7,20 @@ public class squareMachine : MonoBehaviour
     public GameObject cardPrefab;
       [SerializeField] private LayerMask movableLayers;
     public GameObject score;
+    AudioSource audioSource;
+    public AudioClip sparkle;
+    public AudioClip bloop;
+    private Color color;
+    private SpriteRenderer star;
+    private GameObject stars;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+      audioSource = GetComponent<AudioSource>();
+      stars = GameObject.Find("stars");
+      star = stars.GetComponent<SpriteRenderer>();
+      color = star.color;
     }
 
     // Update is called once per frame
@@ -20,8 +29,11 @@ public class squareMachine : MonoBehaviour
         Vector3 pos = new Vector3((float) -5.7, (float) -3.23, 0);
         Collider2D hit = Physics2D.OverlapCircle(pos, 0.2f);
       if (hit && Input.GetMouseButtonUp(0) && int.Parse(hit.name) < 13) {
+        audioSource.pitch = 1.0f;
+        audioSource.volume = 0.16f;
+        audioSource.PlayOneShot(bloop);
+
         int newNum = int.Parse(hit.name) * int.Parse(hit.name);
-            DestroyImmediate(hit.gameObject);
 
           GameObject instance = Instantiate(
                                     cardPrefab, 
@@ -35,7 +47,7 @@ public class squareMachine : MonoBehaviour
           string folder = colors[index];
           string folderpath = folder + "/" + newNum.ToString();
 
-          instance.transform.localPosition = new Vector3(instance.transform.position.x, instance.transform.position.y, 0);
+          instance.transform.localPosition = hit.transform.position;
               Sprite sprite = Resources.Load<Sprite>(folderpath);
         instance.GetComponent<SpriteRenderer>().sprite = sprite;
         instance.name = newNum.ToString();
@@ -43,6 +55,17 @@ public class squareMachine : MonoBehaviour
         instance.GetComponent<SpriteRenderer>().enabled = true;
         score.SendMessage("incrementMerge");
 
+        stars.SetActive(true);
+        Vector3 posi = hit.transform.position;
+        stars.transform.position = posi;
+        color.a = 1;
+        star.color = color;
+        //sound
+        audioSource.pitch = 1.0f;
+        audioSource.volume = 0.4f;
+        audioSource.PlayOneShot(sparkle);
+
+        DestroyImmediate(hit.gameObject);
       }
     }
 }
