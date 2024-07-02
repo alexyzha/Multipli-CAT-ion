@@ -8,6 +8,7 @@ TagManager:
   - solution
   - settings
   - endScreen
+  - popup
   layers:
   - Default
   - TransparentFX

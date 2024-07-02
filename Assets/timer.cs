@@ -7,7 +7,7 @@ public class timer : MonoBehaviour
 {
     [SerializeField] private TMP_Text timerText;
     [SerializeField] private TMP_Text finalText;
-    double time = 30.0;
+    double time = 41.0;
     GameObject[] ends;
     bool ended = false;
 
