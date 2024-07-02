@@ -9,6 +9,8 @@ TagManager:
   - settings
   - endScreen
   - popup
+  - title
+  - tutorial
   layers:
   - Default
   - TransparentFX
