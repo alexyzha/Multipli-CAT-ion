@@ -16,6 +16,8 @@ public class dragAll : MonoBehaviour {
   public AudioClip bloop;
   public AudioClip sparkle;
 
+  public const string ColPass = "colpass";
+
   // Update is called once per frame
   void Update() {
     audioSource = GetComponent<AudioSource>();
@@ -101,11 +103,21 @@ public class dragAll : MonoBehaviour {
                                     Quaternion.identity
                                   );
 
-          string[] colors = {"gray", "orange", "white"};
-          var randCol = new System.Random();
-          int index = randCol.Next(colors.Length);
-          string folder = colors[index];
-          string folderpath = folder + "/" + newNum.ToString();
+          /*
+            string[] colors = {"gray", "orange", "white"};
+            var randCol = new System.Random();
+            int index = randCol.Next(colors.Length);
+            string folder = colors[index];*/
+            string folderpath = "";
+            int col = PlayerPrefs.GetInt(ColPass);
+            if (col == 0)
+                folderpath = "white/" + newNum.ToString();
+            if (col == 1)
+                folderpath = "gray/" + newNum.ToString();
+            if (col == 2)
+                folderpath = "orange/" + newNum.ToString();
+            if (col == 3)
+                folderpath = "glass/" + newNum.ToString();
 
           instance.transform.localPosition = createPos;
               Sprite sprite = Resources.Load<Sprite>(folderpath);

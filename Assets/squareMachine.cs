@@ -13,6 +13,7 @@ public class squareMachine : MonoBehaviour
     private Color color;
     private SpriteRenderer star;
     private GameObject stars;
+    public const string ColPass = "colpass";
 
     // Start is called before the first frame update
     void Start()
@@ -41,11 +42,21 @@ public class squareMachine : MonoBehaviour
                                     Quaternion.identity
                                   );
 
-        string[] colors = {"gray", "orange", "white"};
-          var randCol = new System.Random();
-          int index = randCol.Next(colors.Length);
-          string folder = colors[index];
-          string folderpath = folder + "/" + newNum.ToString();
+        /*
+            string[] colors = {"gray", "orange", "white"};
+            var randCol = new System.Random();
+            int index = randCol.Next(colors.Length);
+            string folder = colors[index];*/
+            string folderpath = "";
+            int col = PlayerPrefs.GetInt(ColPass);
+            if (col == 0)
+                folderpath = "white/" + newNum.ToString();
+            if (col == 1)
+                folderpath = "gray/" + newNum.ToString();
+            if (col == 2)
+                folderpath = "orange/" + newNum.ToString();
+            if (col == 3)
+                folderpath = "glass/" + newNum.ToString();
 
           instance.transform.localPosition = hit.transform.position;
               Sprite sprite = Resources.Load<Sprite>(folderpath);

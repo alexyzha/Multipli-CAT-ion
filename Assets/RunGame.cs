@@ -9,6 +9,7 @@ public class RunGame : MonoBehaviour
     public GameObject cardPrefab;
     public GameObject prefabSolution;
     private int randNum;
+    public const string ColPass = "colpass";
 
     // Update is called once per frame
     void Update()
@@ -24,16 +25,25 @@ public class RunGame : MonoBehaviour
     public void generateNew () {
         Vector3[] positions = {new Vector3((float) 0.6, (float) 3.7, 0), new Vector3((float) 3.4, (float) 3.7, 0), 
             new Vector3((float) 6.13, (float) 3.7, 0), new Vector3((float) 0.6, (float) 1.55, 0), new Vector3((float) 3.4, (float) 1.55, 0), 
-            new Vector3((float) 6.13, (float) 1.55, 0), new Vector3((float) 0.6, (float) -1.3, 0), new Vector3((float) 3.4, (float) -1.3, 0), 
-            new Vector3((float) 6.13, (float) -1.3, 0), new Vector3((float) 0.6, (float) -3.3, 0), new Vector3((float) 3.4, (float) -3.3, 0), 
-            new Vector3((float) 6.13, (float) -3.3, 0)};
+            new Vector3((float) 6.13, (float) 1.55, 0), new Vector3((float) 0.6, (float) -0.6, 0), new Vector3((float) 3.4, (float) -0.6, 0), 
+            new Vector3((float) 6.13, (float) -0.6, 0), new Vector3((float) 0.6, (float) -2.75, 0), new Vector3((float) 3.4, (float) -2.75, 0), 
+            new Vector3((float) 6.13, (float) -2.75, 0)};
         for (int i = 1; i <=12; i++) {
-            //random color
+            /*
             string[] colors = {"gray", "orange", "white"};
             var randCol = new System.Random();
             int index = randCol.Next(colors.Length);
-            string folder = colors[index];
-            string folderpath = folder + "/" + i.ToString();
+            string folder = colors[index];*/
+            string folderpath = "";
+            int col = PlayerPrefs.GetInt(ColPass);
+            if (col == 0)
+                folderpath = "white/" + i.ToString();
+            if (col == 1)
+                folderpath = "gray/" + i.ToString();
+            if (col == 2)
+                folderpath = "orange/" + i.ToString();
+            if (col == 3)
+                folderpath = "glass/" + i.ToString();
 
             GameObject instance = Instantiate(
                                         cardPrefab, 
@@ -65,11 +75,21 @@ public class RunGame : MonoBehaviour
                                         Quaternion.identity
                                     );
 
+            /*
             string[] colors = {"gray", "orange", "white"};
             var randCol = new System.Random();
             int index = randCol.Next(colors.Length);
-            string folder = colors[index];
-            string folderpath = folder + "/" + numbers[randNum-1].ToString();
+            string folder = colors[index];*/
+            string folderpath = "";
+            int col = PlayerPrefs.GetInt(ColPass);
+            if (col == 0)
+                folderpath = "white/" + numbers[randNum-1].ToString();
+            if (col == 1)
+                folderpath = "gray/" + numbers[randNum-1].ToString();
+            if (col == 2)
+                folderpath = "orange/" + numbers[randNum-1].ToString();
+            if (col == 3)
+                folderpath = "glass/" + numbers[randNum-1].ToString();
 
             Sprite sprite = Resources.Load<Sprite>(folderpath);
             instance.GetComponent<SpriteRenderer>().sprite = sprite;
