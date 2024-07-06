@@ -76,7 +76,7 @@ public class dragAll : MonoBehaviour {
         
         //for NEWNUM random folder
         int newNum = 1;
-        if (collider2Ds.Length == 2 && int.Parse(collider2Ds[0].name) * int.Parse(collider2Ds[1].name) < 145 && drag) {
+        if (collider2Ds.Length == 2 && int.Parse(collider2Ds[0].name) * int.Parse(collider2Ds[1].name) < 145 && drag && dragging) {
           Vector3 createPos = collider2Ds[1].transform.position;
           if (createPos == dragging.position)
             createPos = collider2Ds[0].transform.position;
