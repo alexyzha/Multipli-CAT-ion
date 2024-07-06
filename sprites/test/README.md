@@ -1,0 +1,1 @@
+# Disregard, this folder was used to test color replacement and deletion before the code was applied to every cat sprite
