@@ -128,7 +128,6 @@ public class settings : MonoBehaviour
                 if (PlayerPrefs.GetInt("TScore") < 10) {
                     int newScore = PlayerPrefs.GetInt("TScore") + 10;
                     PlayerPrefs.SetInt("TScore", newScore);
-                    PlayerPrefs.SetInt("colpass", 1);
                     Click();
                     Click();
                     PlayerPrefs.Save();
@@ -139,7 +138,6 @@ public class settings : MonoBehaviour
                 if (PlayerPrefs.GetInt("TScore") < 50) {
                     int newScore = PlayerPrefs.GetInt("TScore") + 50;
                     PlayerPrefs.SetInt("TScore", newScore);
-                    PlayerPrefs.SetInt("colpass", 2);
                     Click();
                     Click();
                     PlayerPrefs.Save();
@@ -150,7 +148,6 @@ public class settings : MonoBehaviour
                 if (PlayerPrefs.GetInt("TScore") < 100) {
                     int newScore = PlayerPrefs.GetInt("TScore") + 100;
                     PlayerPrefs.SetInt("TScore", newScore);
-                    PlayerPrefs.SetInt("colpass", 3);
                     Click();
                     Click();
                     PlayerPrefs.Save();
