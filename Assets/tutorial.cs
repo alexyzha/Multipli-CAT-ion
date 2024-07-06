@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class tutorial : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class tutorial : MonoBehaviour
     public GameObject six;
     List<GameObject> pages =  new List<GameObject>();
     public dragAll drag;
+    public Button settings;
 
     GameObject[] titles;
     int page = 1;
@@ -55,6 +57,8 @@ public class tutorial : MonoBehaviour
             }
             if (drag)
                 drag.setEnable(true);
+            if (settings)
+                settings.interactable = true;
         } else {
             clicked = true;
             forward.SetActive(true);
@@ -66,6 +70,8 @@ public class tutorial : MonoBehaviour
             page = 1;
             if (drag)
                 drag.setEnable(false);
+            if (settings)
+                settings.interactable = false;
         }
     }
 
