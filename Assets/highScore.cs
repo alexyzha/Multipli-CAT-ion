@@ -6,7 +6,7 @@ public class highScore : MonoBehaviour
     public const string scorePass = "HScore";
     public const string TPass = "TScore";
     public const string ColPass = "colpass";
-
+    
     public void saveScore(int score) {
         PlayerPrefs.SetInt(scorePass, score);
         PlayerPrefs.Save();
@@ -26,14 +26,4 @@ public class highScore : MonoBehaviour
         return(PlayerPrefs.GetInt(scorePass));
     }
 
-}
-
-[InitializeOnLoad]
-public class Startup {
-    static Startup()
-    {
-        PlayerPrefs.SetInt("HScore", 0);
-        PlayerPrefs.SetInt("TScore", 0);
-        PlayerPrefs.SetInt("colpass", 0);
-    }
 }

@@ -101,13 +101,13 @@ public class keepScore : MonoBehaviour
         scoreText.text = "Score: " + score.ToString();
         if (totalScore < 10) {
             totalScoreText.text = "total score: " + totalScore.ToString() + ", "+ (10 - totalScore).ToString() + " more to unlock";
-            unlockCat.GetComponent<SpriteRenderer>().sprite = gray;
+            unlockCat.GetComponent<UnityEngine.UI.Image>().sprite = gray;
         } else if (totalScore < 50) {
             totalScoreText.text = "total score: " + totalScore.ToString() + ", "+ (50 - totalScore).ToString() + " more to unlock";
-            unlockCat.GetComponent<SpriteRenderer>().sprite = orange;
+            unlockCat.GetComponent<UnityEngine.UI.Image>().sprite = orange;
         } else if (totalScore < 100) {
             totalScoreText.text = "total score: " + totalScore.ToString() + ", "+ (100 - totalScore).ToString() + " more to unlock";
-            unlockCat.GetComponent<SpriteRenderer>().sprite = clear;
+            unlockCat.GetComponent<UnityEngine.UI.Image>().sprite = clear;
         } else {
             totalScoreText.text = "total score: " + totalScore.ToString();
             unlockCat.SetActive(false);
