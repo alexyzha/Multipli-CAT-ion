@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class tutorial : MonoBehaviour
 {
     bool clicked = false;
+    bool att = false;
+    public GameObject trib;
+    public Button tribBtn;
+    public Sprite tt;
     public Sprite question;
     public Sprite x;
     public GameObject forward;
@@ -36,7 +40,8 @@ public class tutorial : MonoBehaviour
         pages.Add(four);
         pages.Add(five);
         pages.Add(six);
-
+        if (trib)
+            trib.SetActive(false);
     }
 
     // Update is called once per frame
@@ -59,6 +64,8 @@ public class tutorial : MonoBehaviour
                 drag.setEnable(true);
             if (settings)
                 settings.interactable = true;
+            if (tribBtn)
+                tribBtn.interactable = true;
         } else {
             clicked = true;
             forward.SetActive(true);
@@ -72,6 +79,8 @@ public class tutorial : MonoBehaviour
                 drag.setEnable(false);
             if (settings)
                 settings.interactable = false;
+            if (tribBtn)
+                tribBtn.interactable = false;
         }
     }
 
@@ -93,5 +102,25 @@ public class tutorial : MonoBehaviour
             back.SetActive(false);
         pages[page-1].SetActive(true);
         pages[page].SetActive(false);
+    }
+
+    public void attrib() {
+        if (att) {
+            att = false;
+            trib.SetActive(false);
+            tribBtn.GetComponent<UnityEngine.UI.Image>().sprite = tt;
+            foreach (GameObject title in titles) {
+                title.SetActive(true);
+            }
+            GetComponent<Button>().interactable = true;
+        } else {
+            att = true;
+            trib.SetActive(true);
+            tribBtn.GetComponent<UnityEngine.UI.Image>().sprite = x;
+            foreach (GameObject ob in titles) {
+                ob.SetActive(false);
+            }
+            GetComponent<Button>().interactable = false;
+        }
     }
 }
