@@ -27,7 +27,7 @@ def replace_color(image_path,output_path,target_color,replacement_color):
 
 ## lighter yellow: (255,214,0) ---> (31,83,107)
 ## darker yellow: (163,148,68) ---> (3,27,39)
-r_arr = [(255,214,0),(31,83,107),(163,148,68),(3,27,39)]
+r_arr = [(255,214,0),(138,28,28),(163,148,68),(93,1,1)]
 ## test replacement
 # i_ = "C:/Users/Alex/Desktop/Code/CAT_GAME/sprites/v2final/orange/1.png"
 # o_ = "C:/Users/Alex/Desktop/Code/CAT_GAME/sprites/test/1.png"
